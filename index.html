@@ -5,17 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Train ticket form</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <label for="distance">Distance (in KM)</label>
-    <input name="distance" id="user-distance-input" type="number">
+    
+    <h1>WeNeedAGraphicDesinerRailways and Co.</h1>
 
-    <label for="age">Age</label>
-    <input name="age" id="user-age-input" type="number">
+    <section class="container">
+        
+        <div class="flx flx-wrap">
+            <div class="input-container">
+                <label for="first-name">First Name</label>
+                <input name="first-name" class="user-infos" id="user-first-name-input" type="text">
+            </div>
 
-    <button id="submit-button">Submit</button>
+            <div class="input-container">
+                <label for="last-name">Last Name</label>
+                <input name="last-name" class="user-infos" id="user-last-name-input" type="text">
+            </div>
 
-    <span></span>
+            <div class="input-container">
+                <label for="distance">Distance (in KM)</label>
+                <input name="distance" class="user-infos" id="user-distance-input" type="number">
+            </div>
+
+            <div class="input-container">
+                <label for="age">Age</label>
+                <input name="age" class="user-infos" id="user-age-input" type="number">
+            </div>
+
+        </div>
+
+        <button id="submit-button">Submit</button>
+
+        <span></span>
+    </section>
+
+    
+
+    <section class="ticket-container unseen">
+
+        <h2>YOUR TICKET</h2>
+
+        <div class="flx ticket">
+            <div id="ticket-number" class="flx-center flx-column">
+                <span></span>
+                <span></span>
+            </div>
+            
+            <div id="ticket-info" class="flx flx-wrap">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+    </section>
 
     <script src="./script/main.js"></script>
 </body>

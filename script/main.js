@@ -1,4 +1,6 @@
 
+// MILESTONE 1
+
     // Setting variables for discounts
 const pricePerKM = .26;
 
@@ -37,6 +39,34 @@ submit.addEventListener("click", function() {
     console.log(finalMessage);
 
         // Printing the final price on the screen
-    document.querySelector("span").innerHTML = finalMessage;
+    document.querySelector(".container span").innerHTML = finalMessage;
+
+// MILESTONE 2
+
+    // Random ticket number
+    let ticketNumber = Math.floor((Math.random() * 100000) +1);
+
+    document.querySelector("#ticket-number span:first-child").innerHTML = "Ticket n° " + ticketNumber;
+    document.querySelector("#ticket-number span:nth-child(2)").innerHTML = "€" + ticketCost.toFixed(2);
+
+    // More user infos that will appear on the ticket
+    const userFirstName =  document.getElementById("user-first-name-input").value;
+    const userLastName = document.getElementById("user-last-name-input").value;
+
+    document.querySelector("#ticket-info span:first-child").innerHTML = userLastName;
+    document.querySelector("#ticket-info span:nth-child(2)").innerHTML = userFirstName;
+    document.querySelector("#ticket-info span:nth-child(3)").innerHTML = userDistance + "Km";
+
+    // Type of discount appear on the ticket if needed
+    if (userAge < 18) {
+        document.querySelector("#ticket-info span:nth-child(4)").innerHTML = "Discount applied: 15%";
+    } else if (userAge >= 65) {
+        document.querySelector("#ticket-info span:nth-child(4)").innerHTML = "Discount applied: 35%";
+    } else {
+        document.querySelector("#ticket-info span:nth-child(4)").innerHTML = "";
+    }
+
+    // The ticket will appear when the user submit his/her infos
+    document.querySelector(".ticket-container").classList.remove("unseen");
 }
 );
