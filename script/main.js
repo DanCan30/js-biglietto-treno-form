@@ -4,11 +4,9 @@
     // Setting variables for discounts
 const pricePerKM = .26;
 
-const kidDiscount = (pricePerKM * 15) / 100;
-const kidTicket = pricePerKM - kidDiscount;
+const kidDiscount = pricePerKM - (pricePerKM * 15) / 100;
 
-const seniorDiscount = (pricePerKM * 35) / 100;
-const seniorTicket = pricePerKM - seniorDiscount;
+const seniorDiscount = pricePerKM - (pricePerKM * 35) / 100;
 
     // Initializing a variable with the submit button
 const submit = document.getElementById("submit-button");
@@ -16,30 +14,43 @@ const submit = document.getElementById("submit-button");
     // Making a function that takes the input values on submit-button click and prints them in the layout
 submit.addEventListener("click", function() {
     
-    let userDistance = document.getElementById("user-distance-input").value;
-    let userAge = document.getElementById("user-age-input").value;
+    // Initializing variables for inputs
+    let userDistance = parseInt(document.getElementById("user-distance-input").value);
+    let userAge = parseInt(document.getElementById("user-age-input").value);
+    const userFirstName =  document.getElementById("user-first-name-input").value;
+    const userLastName = document.getElementById("user-last-name-input").value;
+
 
     console.log(userDistance, userAge);
 
     let ticketCost;
-    
+    let message;
+
+    if (isNaN(userDistance) || userDistance <= 0 || isNaN(userAge) || userAge <= 0 || userFirstName.length == 0 || userLastName.length == 0 || !isNaN(userFirstName) || !isNaN(userLastName) ) {
+
+        message = "Please insert a valid data";
+        document.querySelector(".container span").innerHTML = message;
+        document.querySelector(".ticket-container").classList.add("unseen");
+
+    } else {
+
         // Calculating ticket price using distance and eventual discounts
     if (userAge < 18) {
-        ticketCost = userDistance * kidTicket;
+        ticketCost = userDistance * kidDiscount;
     } else if (userAge >= 65) {
-        ticketCost = userDistance * seniorTicket;
+        ticketCost = userDistance * seniorDiscount;
     } else {
         ticketCost = userDistance * pricePerKM;
     }
 
         // Initializing a variable with the final price of the ticket
-    let finalMessage = "The ticket price is: " + ticketCost.toFixed(2) + "€";
+    message = "The ticket price is: " + ticketCost.toFixed(2) + "€";
 
     console.log(ticketCost);
-    console.log(finalMessage);
+    console.log(message);
 
         // Printing the final price on the screen
-    document.querySelector(".container span").innerHTML = finalMessage;
+    document.querySelector(".container span").innerHTML = message;
 
 // MILESTONE 2
 
@@ -50,8 +61,6 @@ submit.addEventListener("click", function() {
     document.querySelector("#ticket-number span:nth-child(2)").innerHTML = "€" + ticketCost.toFixed(2);
 
     // More user infos that will appear on the ticket
-    const userFirstName =  document.getElementById("user-first-name-input").value;
-    const userLastName = document.getElementById("user-last-name-input").value;
 
     document.querySelector("#ticket-info span:first-child").innerHTML = userLastName;
     document.querySelector("#ticket-info span:nth-child(2)").innerHTML = userFirstName;
@@ -68,5 +77,6 @@ submit.addEventListener("click", function() {
 
     // The ticket will appear when the user submit his/her infos
     document.querySelector(".ticket-container").classList.remove("unseen");
+}
 }
 );
